@@ -17,7 +17,12 @@ def main_fun():
 			st = input("Enter the word you want \n")
 			st=st.lower()
 			if st in my_data:
-				give_me_def(st)
+				flag=True
+			elif st.title() in my_data:
+				st=st.title()
+				flag=True
+			elif st.upper() in my_data:
+				st=st.upper()
 				flag=True
 			else:
 				new_word = get_close_matches(st,my_data.keys(),cutoff=0.7)
@@ -26,7 +31,6 @@ def main_fun():
 					take=input('Press "Y" if yes')
 					if "y"==take.lower():
 						st = new_word[0]
-						give_me_def(st)
 						flag=True
 					else:
 						continue
@@ -34,6 +38,7 @@ def main_fun():
 					flag = False
 			
 		if flag == True:
+			give_me_def(st)
 			continue
 		else:
 			print("You entered somthing wrong.. Please try again")
